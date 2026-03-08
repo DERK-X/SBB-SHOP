@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -37,7 +36,7 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
 
-    ArrayList <HashMap <String,String>> arrayList = new ArrayList();
+    ArrayList<HashMap<String,String>> arrayList = new ArrayList<>();
     HashMap <String,String> hashMap;
 
     GridView gridview;
@@ -71,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
 
                             JSONArray jsonArray = jsonObject.getJSONArray("products");
-                            Log.d("trt",jsonArray.toString());
+
 
                             for (int x=0; x<jsonArray.length();x++){
 
@@ -86,12 +85,8 @@ public class MainActivity extends AppCompatActivity {
                                 String Raiing = jsonObject1.getString("rating");
                                 String Stock = jsonObject1.getString("stock");
 
-
                                 JSONArray imagesarra = jsonObject1.getJSONArray("images");
                                 String Imageview = imagesarra.getString(0);
-
-
-
 
 
                                 hashMap = new HashMap<>();
@@ -183,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
             price.setText(Price);
             noprice.setText(Html.fromHtml("<strike>"+Desp+"</strike>"));
             star.setText("⭐ "+Rating);
-            stock.setText("Stock : "+Stock);
+            stock.setText("Stock : "+ Stock);
 
 
             return myview;
