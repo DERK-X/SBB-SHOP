@@ -1,6 +1,9 @@
 package com.example.a2581;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -10,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -159,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
             TextView noprice = myview.findViewById(R.id.noprice);
             TextView stock = myview.findViewById(R.id.stock);
 
+            RelativeLayout Maenlina = myview.findViewById(R.id.maneline);
+
 
             HashMap<String,String>hashMap=arrayList.get(position);
 
@@ -179,6 +185,26 @@ public class MainActivity extends AppCompatActivity {
             noprice.setText(Html.fromHtml("<strike>"+Desp+"</strike>"));
             star.setText("⭐ "+Rating);
             stock.setText("Stock : "+ Stock);
+
+            Maenlina.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    MainActivity2.Title=Title;
+                    MainActivity2.Desve=Des;
+                    MainActivity2.Priceve=Price;
+                    MainActivity2.Dpriceve=Desp;
+                    MainActivity2.Ratingve="⭐ "+Rating;
+                    MainActivity2.Stockve="Stock : "+ Stock;
+
+                    Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+                    MainActivity2.MyBitmap = bitmap;
+
+
+                    startActivity(new Intent(MainActivity.this, MainActivity2.class));
+
+                }
+            });
 
 
             return myview;
