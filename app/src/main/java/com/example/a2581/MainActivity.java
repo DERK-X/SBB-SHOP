@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView text;
 
+    Animation animation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        animation = AnimationUtils.loadAnimation(MainActivity.this,R.anim.)
         gridview = findViewById(R.id.gridview);
 
 
@@ -89,9 +94,8 @@ public class MainActivity extends AppCompatActivity {
                                 String Raiing = jsonObject1.getString("rating");
                                 String Stock = jsonObject1.getString("stock");
 
-                                JSONArray imagesarra = jsonObject1.getJSONArray("images");
-                                String Imageview = imagesarra.getString(0);
-
+                                JSONArray imagesarray = jsonObject1.getJSONArray("images");
+                                String Imageview = imagesarray.getString(0);
 
                                 hashMap = new HashMap<>();
                                 hashMap.put("title",Title);
@@ -104,8 +108,23 @@ public class MainActivity extends AppCompatActivity {
                                 hashMap.put("images",Imageview);
 
 
-                                arrayList.add(hashMap);
+                                JSONArray reviewsarray = jsonObject1.getJSONArray("reviews");
 
+                                for (int a=0; a<reviewsarray.length();a++){
+
+                                    JSONObject reviewsObject1 = reviewsarray.getJSONObject(a);
+
+                                    String Comment1 = reviewsObject1.getString("comment");
+
+                                    Log.d("vvv",Comment1.toString());
+
+
+                                    hashMap.put("comment"+a,Comment1);
+                                    Log.d("cccc",Comment1.toString());
+
+                                }
+
+                                arrayList.add(hashMap);
 
                             }
 
